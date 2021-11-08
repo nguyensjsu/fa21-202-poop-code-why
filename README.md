@@ -22,7 +22,7 @@ Additionally, based off of the starting code, we must implement the following lo
 
 * Muhammmed Mahmood, https://docs.google.com/document/d/1OIwvsKmLpW2Pc0GV55G3Gw_0hWcfRI1yykBY_kX0wZQ/edit?usp=sharing
 
-* Parmeet Singh
+* Parmeet Singh: https://docs.google.com/document/d/1mTYzsSg6dEoM-nRt_nIEjZhkx56JWAxNDi5SLKIIucs/edit#heading=h.5o2fqzsgwrzz
 
 * Pratik Kasle
 
