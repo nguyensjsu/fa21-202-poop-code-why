@@ -1,0 +1,75 @@
+import greenfoot.*;
+import java.util.List;
+/**
+ * Abstract Piece class.
+ * It keeps track of the color/direction in an attribute cd.
+ * The value 1 encodes Black, the value -1 is for White.
+ * This is used to select the image for the piece, determine who's turn it is
+ * and the playing direction of the Pawn.
+ * The "act" method is used to select a piece with the mouse.
+ * Each instance of a Piece must implement 
+ * the abstract method getLegalPositions(), which returns a list of the legal
+ * moves for that piece in the given position.
+ * @author Kevin Wehde
+ * @version25 19.11.2020
+ */
+public abstract class Piece extends Actor {
+    int cd;
+    boolean isSelected;
+
+    Piece() {
+        super();
+    }
+
+    Piece(int cd) {
+        super();
+        this.cd = cd;
+        isSelected = false;
+    }
+
+    public void act() {
+        if (Greenfoot.mouseClicked(this)) {
+            select();
+        }
+    }  
+
+    public void select() {
+        if (((MyWorld)getWorld()).select(this, cd)) {
+            isSelected = true;
+        }
+        adjustAppearance();
+    }
+    
+    public void unselect() {
+        isSelected = false;
+        adjustAppearance();
+    }
+
+    private void adjustAppearance() {
+        if (isSelected) getImage().setTransparency(50);
+        else getImage().setTransparency(255); 
+    }
+    
+    public int cd() {
+        return this.cd;
+    }
+
+    public void move(Position p) {
+        isSelected = false;
+        setLocation(p.getX(),p.getY());
+    }
+
+    public abstract List<Position> getLegalPositions();
+
+    public boolean isPieceAtOffset(int dx, int dy) {
+        return getOneObjectAtOffset(dx, dy, Piece.class) != null;
+    }
+
+    public boolean isOwnPieceAtOffset(int dx, int dy) {
+        return isPieceAtOffset(dx, dy) && cd == ((Piece)getOneObjectAtOffset(dx, dy, Piece.class)).cd();
+    }
+    
+    public boolean isOnBoardDelta(int dx, int dy) {
+        return getX()+dx < 8 && getX()+dx >=0 && getY()+dy < 8 && getY()+dy >= 0; 
+    }
+}
