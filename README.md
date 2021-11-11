@@ -26,11 +26,21 @@ Additionally, based off of the starting code, we must implement the following lo
 
 * Pratik Kasle
 
-## Architecture Diagram:
+## Architecture Diagrams:
+
+### Starting Architecture Diagram
+
+This is the design of the source code we started this project with.
 
 TODO: (add old diagram)
 
-TODO: (add new diagram) 
+
+### New Architecture Diagram
+
+
+![New Diagram](/diagrams/new-design.png)
+
+
 
 ## Key Feature Design:
 

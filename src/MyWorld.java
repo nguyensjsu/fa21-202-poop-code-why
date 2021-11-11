@@ -46,7 +46,7 @@ public class MyWorld extends World {
 
         isPieceSelected = false;
         selectedPiece = new DummyPiece();
-        turn = 1; //Black starts
+        turn = -1; //Black starts
         prepare();
     }
 
