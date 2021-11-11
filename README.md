@@ -14,7 +14,11 @@ Additionally, based off of the starting code, we must implement the following lo
 
 1. Preventing moves that do not block a check. 
 
-1. Identifying Checkmate and ending the game.  
+1. Identifying Checkmate and ending the game.
+
+1. Starting the game as white.
+
+1. Fixing the moveset of pawn, (allows perpendicular capture) 
 
 ## Team Member Journals:
 
