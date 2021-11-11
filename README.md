@@ -36,8 +36,7 @@ Additionally, based off of the starting code, we must implement the following lo
 
 This is the design of the source code we started this project with.
 
-TODO: (add old diagram)
-
+![Old Diagram](/diagrams/old-design.png)
 
 ### New Architecture Diagram
 
