@@ -28,7 +28,7 @@ Additionally, based off of the starting code, we must implement the following lo
 
 * Parmeet Singh: https://docs.google.com/document/d/1mTYzsSg6dEoM-nRt_nIEjZhkx56JWAxNDi5SLKIIucs/edit#heading=h.5o2fqzsgwrzz
 
-* Pratik Kasle
+* Pratik Kasle:https://docs.google.com/document/d/1GwsSLKxkEtjYEYjZaAHFsPTI5SQPiBy5Arp-FFRsN5k/edit
 
 ## Architecture Diagrams:
 
