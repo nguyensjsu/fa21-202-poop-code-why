@@ -22,7 +22,7 @@ Additionally, based off of the starting code, we must implement the following lo
 
 ## Team Member Journals:
 
-* Chinmay
+* Chinmay Shukla: https://docs.google.com/document/d/1hJMsJwp5Xlyywy-onqwICOrtpbDtYrHZYfIUAjbDRoQ/edit?usp=sharing
 
 * Muhammmed Mahmood, https://docs.google.com/document/d/1OIwvsKmLpW2Pc0GV55G3Gw_0hWcfRI1yykBY_kX0wZQ/edit?usp=sharing
 
