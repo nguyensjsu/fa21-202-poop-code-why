@@ -16,7 +16,7 @@ import java.util.List;
 public abstract class Piece extends Actor {
     int cd;
     boolean isSelected;
-
+    IMoveStrategy currStrategy;
     Piece() {
         super();
     }
@@ -34,7 +34,7 @@ public abstract class Piece extends Actor {
     }  
 
     public void select() {
-        if (((MyWorld)getWorld()).select(this, cd)) {
+        if (((MyWorld_2)getWorld()).select(this, cd)) {
             isSelected = true;
         }
         adjustAppearance();
@@ -55,6 +55,7 @@ public abstract class Piece extends Actor {
     }
 
     public void move(Position p) {
+        currStrategy.move(p);
         isSelected = false;
         setLocation(p.getX(),p.getY());
     }
@@ -63,6 +64,9 @@ public abstract class Piece extends Actor {
 
     public boolean isPieceAtOffset(int dx, int dy) {
         return getOneObjectAtOffset(dx, dy, Piece.class) != null;
+    }
+    public Actor PieceAtOffset(int dx, int dy) {
+        return getOneObjectAtOffset(dx, dy, Piece.class);
     }
 
     public boolean isOwnPieceAtOffset(int dx, int dy) {

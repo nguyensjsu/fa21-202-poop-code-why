@@ -11,4 +11,7 @@ public class DummyPiece extends Piece {
     public List<Position> getLegalPositions(){
         return new ArrayList<Position>();
     } 
+    public Actor getOneObjectAtOffset(int x,int y,Class c){
+        return super.getOneObjectAtOffset(x,y,c);
+    }
 }

@@ -7,15 +7,17 @@ import java.util.ArrayList;
  * @version25 19.11.2020
  */
 public class Queen extends Piece {
+    IMoveStrategy currStrategy;
     Queen(int cd) {
         super(cd);  
         if (this.cd == 1) setImage("queen-black-50.png");
         else setImage("queen-white-50.png");
+        currStrategy = new QueenStrategy(this);
     }
      
     public List<Position> getLegalPositions(){
-        List<Position> list = new ArrayList<Position>();
-        int d = 1;      
+        List<Position> list = currStrategy.getLegalPositions();
+        /*int d = 1;      
         while (getX() + d < 8 && getY() + d < 8 && !isOwnPieceAtOffset(d, d)) {
             list.add(new Position(getX()+d, getY()+d));
             if (isPieceAtOffset(d, d)) break;
@@ -62,7 +64,7 @@ public class Queen extends Piece {
             list.add(new Position(getX(), getY()-d));
             if (isPieceAtOffset(0,-d)) break;
             d++;
-        }
+        }*/
         return list;
     } 
 }
