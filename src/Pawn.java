@@ -14,6 +14,12 @@ public class Pawn extends Piece {
         else setImage("pawn-white-50.png");
         currStrategy = new PawnStrategy(this);
     }
+    Pawn(int cd,World w) {
+        super(cd);  
+        if (this.cd == 1) setImage("pawn-black-50.png");
+        else setImage("pawn-white-50.png");
+        currStrategy = new PawnStrategy(this,w);
+    }
 
     public List<Position> getLegalPositions(){
         List<Position> list = currStrategy.getLegalPositions();

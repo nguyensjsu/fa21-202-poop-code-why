@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class King extends Piece
 {
-    IMoveStrategy currStrategy;
     King(int cd) {
         super(cd);  
         if (cd == 1) setImage("king-black-50.png");

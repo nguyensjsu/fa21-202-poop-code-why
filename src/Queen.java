@@ -7,7 +7,6 @@ import java.util.ArrayList;
  * @version25 19.11.2020
  */
 public class Queen extends Piece {
-    IMoveStrategy currStrategy;
     Queen(int cd) {
         super(cd);  
         if (this.cd == 1) setImage("queen-black-50.png");

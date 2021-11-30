@@ -9,7 +9,6 @@ import java.util.ArrayList;
  */
 public class Bishop extends Piece {
     
-    IMoveStrategy currStrategy;
     Bishop(int cd) {
         super(cd);  
         if (this.cd == 1) setImage("bishop-black-50.png");

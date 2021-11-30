@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Rook extends Piece
 {
-    IMoveStrategy currStrategy;
     Rook(int cd) {
         super(cd);  
         if (this.cd == 1) setImage("rook-black-50.png");

@@ -12,7 +12,6 @@ public abstract class MoveStrategy implements IMoveStrategy
     public abstract List<Position> getLegalPositions();
 
     public void move(Position p) {
-    }
-    public void setNeighborsElPassant(){
+        return;
     }
 }

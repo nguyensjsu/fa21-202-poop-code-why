@@ -12,16 +12,18 @@ import java.util.ArrayList;
  * @author Kevin Wehde 
  * @version25 19.11.2020
  */
-public class MyWorld_2 extends World {
+public class MyWorld_2 extends World implements IElPassantObserver,IElPassantClearSubject {  // PromoteObserver, subject for elpassant
 
     boolean isPieceSelected;
     Piece selectedPiece = new DummyPiece();
+    ArrayList<IMoveStrategy> ElPassantPawns;
     int turn; //1 is Black, -1 is White
 
     public MyWorld_2() {    
-        super(8, 8, 50); 
+        super(8, 8, 50);
+        ElPassantPawns = new ArrayList<IMoveStrategy>();
         for (int i = 0; i < 8; i++) {
-            addObject(new Pawn(1), i, 1);
+            addObject(new Pawn(1,this), i, 1);
         }
         addObject(new Rook(1), 0, 0);
         addObject(new Rook(1), 7, 0);
@@ -33,7 +35,7 @@ public class MyWorld_2 extends World {
         addObject(new King(1), 4, 0);
 
         for (int i = 0; i < 8; i++) {
-            addObject(new Pawn(-1), i, 6);
+            addObject(new Pawn(-1,this), i, 6);
         }
         addObject(new Rook(-1), 0, 7);
         addObject(new Rook(-1), 7, 7);
@@ -88,6 +90,7 @@ public class MyWorld_2 extends World {
     }
     
     private void changeTurn() {
+        notifyPawns();
         turn = -turn;
     }
     
@@ -104,5 +107,26 @@ public class MyWorld_2 extends World {
 
     private void clearHighlights() {
         removeObjects(getObjects(HighlightPosition.class));
+    }
+    public void updateElPassant(Actor p){ /*this is to capture the pawn in alpassant path*/
+        removeObject(p);
+    }
+    public void notifyPawns(){
+        boolean detach = false;
+        for(IMoveStrategy p : ElPassantPawns){
+            if(((PawnStrategy)p).P.cd() == turn){
+                ((IElPassantClearObserver)p).ClearPassants();
+                detach = true;
+            }
+        }
+        if(detach){
+             detachPawns();
+            }
+    }
+    public void attachPawn(IMoveStrategy P){
+        ElPassantPawns.add(P);
+    }
+    public void detachPawns(){
+        ElPassantPawns.clear();
     }
 }

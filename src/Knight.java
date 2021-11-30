@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Knight extends Piece
 {
-    IMoveStrategy currStrategy;
     Knight(int cd) {
         super(cd);  
         if (this.cd == 1) setImage("knight-black-50.png");
