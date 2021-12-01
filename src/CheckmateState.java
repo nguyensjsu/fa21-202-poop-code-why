@@ -4,7 +4,7 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class CheckmateState extends IBoardState 
+public class CheckmateState implements IBoardState
 {
     // instance variables - replace the example below with your own
     private int x;
@@ -26,5 +26,10 @@ public class CheckmateState extends IBoardState
     {
         // put your code here
         return x + y;
+    }
+    public void move()
+    {
+        // put your code here
+        return;
     }
 }
