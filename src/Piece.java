@@ -27,6 +27,9 @@ public abstract class Piece extends Actor {
         isSelected = false;
     }
 
+    public void setCurrStrategy(IMoveStrategy strat) {
+        currStrategy = strat;
+    }
     public void act() {
         if (Greenfoot.mouseClicked(this)) {
             select();
