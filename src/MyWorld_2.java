@@ -18,6 +18,14 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
     Piece selectedPiece = new DummyPiece();
     ArrayList<IMoveStrategy> ElPassantPawns;
     int turn; //1 is Black, -1 is White
+    
+    //current state
+    private IBoardState state;
+
+    //states
+    private NormalState normalState;
+    private CheckState checkState;
+    private CheckmateState checkmateState;
 
     public MyWorld_2() {    
         super(8, 8, 50);
@@ -46,13 +54,21 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         addObject(new Queen(-1), 3, 7);
         addObject(new King(-1), 4, 7);
         
+        normalState = new NormalState(this);
+        checkState = new CheckState(this);
+        checkmateState = new CheckmateState(this);
+        
+        state = normalState; // Starts with Normal State
+
         isPieceSelected = false;
         selectedPiece = new DummyPiece();
         turn = -1; //White starts
     }
 
     public void act() {
-        movePiece();
+        //movePiece();
+        
+        move(); // Using this instead to initiate the current state's appropriate method
     }
 
     public boolean select(Piece p, int cd) {
@@ -75,8 +91,27 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
             addObject(new HighlightPosition(), p.getX(), p.getY());
         }
     }
+    
+    /**
+     * Uses the state's move method
+     * If normal state, uses MovePiece()
+     * If check state, uses.....
+     * If checkmate state, uses ..... 
+     */
+    public void move(){
+        state.move();
+    }
+    
+    /**
+     * Change state
+     * 
+     * @param state, change to this state
+     */
+    public void changeState(IBoardState state){
+        this.state= state;
+    }
 
-    private void movePiece() {
+    public void movePiece() {
         for (HighlightPosition p: getObjects(HighlightPosition.class)) {
             if (Greenfoot.mouseClicked(p)) {
                 Position targetPosition = new Position(p);
@@ -128,5 +163,13 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
     }
     public void detachPawns(){
         ElPassantPawns.clear();
+    }
+    
+    /**
+     * Ends the game when checkmate
+     * Will implement display on screen later
+     */
+    public void end(){
+        //System.out.println("Game Finished");
     }
 }

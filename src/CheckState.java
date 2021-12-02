@@ -6,25 +6,19 @@
  */
 public class CheckState implements IBoardState
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
+    MyWorld_2 myWorld;
+    
     /**
-     * Constructor for objects of class CheckState
-     */
-    public CheckState()
+    * Constructor for objects of class CheckState
+    */
+    public CheckState(MyWorld_2 mw)
     {
+        this.myWorld = mw;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param     sample parameter for a method
-     * @return     the sum of x and y 
-     */
+    // TO DO
     public void move()
     {
-        // put your code here
-        return;
+        //myWorld.movePiece();
     }
 }
