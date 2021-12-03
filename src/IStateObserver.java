@@ -14,8 +14,7 @@ public interface IStateObserver
     /**
      * 
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Observer to observer checkmateevent
      */
     public void checkmateEvent();
 
