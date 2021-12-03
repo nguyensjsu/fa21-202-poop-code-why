@@ -15,4 +15,12 @@ public class NormalState implements IBoardState
     {
         myWorld.movePiece();
     }
+    
+    /**
+     * Ends the game at checkmate
+     */
+    public void endGame()
+    {   
+        //Still in normal state, cant end game
+    }
 }
