@@ -24,8 +24,8 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
 
     //states
     private NormalState normalState;
-    private CheckState checkState;
-    private CheckmateState checkmateState;
+    private WhiteCheckmateState whiteCMState;
+    private BlackCheckmateState blackCMState;
 
     public MyWorld_2() {    
         super(8, 8, 50);
@@ -55,8 +55,8 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         addObject(new King(-1), 4, 7);
         
         normalState = new NormalState(this);
-        checkState = new CheckState(this);
-        checkmateState = new CheckmateState(this);
+        blackCMState = new BlackCheckmateState(this);
+        whiteCMState = new WhiteCheckmateState(this);
         
         state = normalState; // Starts with Normal State
 
@@ -67,11 +67,34 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
 
     public void act() {
         //movePiece();
-        
-        move(); // Using this instead to initiate the current state's appropriate method
-
+        stateMethod();// Using this instead to initiate the current state's appropriate method
+    }
+    
+    /**
+     * Uses the state's move method
+     */
+    public void stateMethod(){
+        if(state == normalState)
+            state.move();
+        else if(state == whiteCMState || state == blackCMState)
+            state.endGame();
+    }
+    
+    /**
+     * Change state of the board
+     * 
+     * @param state, change to this state
+     */
+    public void changeState(IBoardState state){
+        this.state= state;
     }
 
+    /**
+     * Selects the piece that cursor selects
+     * 
+     * @param p , piece to be moved
+     * @param cd
+     */
     public boolean select(Piece p, int cd) {
         if (cd == turn) {
             if (isPieceSelected) {
@@ -86,44 +109,49 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         }
     }
 
+    /**
+     * Shows the legal moves for the selected piece
+     */
     private void showLegalMoves() {
         List<Position> legalPositions = selectedPiece.getLegalPositions();
         for (Position p: legalPositions) {
             addObject(new HighlightPosition(), p.getX(), p.getY());
         }
     }
-    
-    /**
-     * Uses the state's move method
-     * If normal state, uses MovePiece()
-     * If check state, uses.....
-     * If checkmate state, uses ..... 
-     */
-    public void move(){
-        state.move();
-    }
-    
-    /**
-     * Change state
-     * 
-     * @param state, change to this state
-     */
-    public void changeState(IBoardState state){
-        this.state= state;
-    }
 
+    /**
+     * Moves the pieces in the world
+     * If king is captured, the game ends
+     */
     public void movePiece() {
         for (HighlightPosition p: getObjects(HighlightPosition.class)) {
             if (Greenfoot.mouseClicked(p)) {
                 Position targetPosition = new Position(p);
                 List<Piece> l = getObjectsAt(targetPosition.getX(), targetPosition.getY(), Piece.class);
                 selectedPiece.move(targetPosition);
-                if (l.size() > 0) capture(l.get(0));
+                
+                if (l.size() > 0) {
+                    capture(l.get(0));
+                    //System.out.println(l.get(0).getClass());
+                    // Checks if the piece captures is a king
+                    if(l.get(0).currStrategy.getClass() == KingStrategy.class){
+                        // If white captures the king
+                        // then white wins the game
+                        if(turn == -1)
+                            changeState(whiteCMState);
+                        // If black captures the king
+                        // then black wins the game
+                        else if(turn == 1)
+                            // State changes to black checkmate state, where endgame method is called
+                            changeState(blackCMState);
+                    }
+                }
+
                 unselectPiece(selectedPiece);
+                
                 changeTurn();
             }
         }
-
     }
     
     private void changeTurn() {
@@ -167,11 +195,18 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         ElPassantPawns.clear();
     }
     
-    /**
-     * Ends the game when checkmate
-     * Will implement display on screen later
-     */
-    public void end(){
-        //System.out.println("Game Finished");
+    /*
+    public void end()
+    {
+        //String whoWon; 
+        
+        if(state== whiteCMState)
+            Greenfoot.setWorld(new WhiteWonWorld());
+        else if(state == blackCMState)
+            Greenfoot.setWorld(new BlackWonWorld());
+        //showText("Black Won!",4,3);
+        
+        //Greenfoot.stop();
     }
+    */
 }
