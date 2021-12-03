@@ -215,8 +215,6 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
     }
     
     
-    
-    
     public void registerCheckMateObserver(IStateObserver obj){
         this.checkMateObserver = obj;
     }
