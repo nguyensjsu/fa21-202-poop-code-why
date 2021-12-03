@@ -50,6 +50,10 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         turn = -1; //White starts
     }
 
+    /**
+     * Method for Greenfoot to execute on repeat
+     * until Greenfoot.stop()
+     */
     public void act() {
         //movePiece();
         stateMethod();// Using this instead to initiate the current state's appropriate method
@@ -132,11 +136,19 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         }
     }
     
+    /**
+     * Change turn of the game
+     */
     private void changeTurn() {
         notifyPawns();
         turn = -turn;
     }
     
+    /**
+     * Capture the piece
+     * 
+     * @param p piece to capture
+     */
     private void capture(Piece p) {
         //System.out.println(l.get(0).getClass());
         // Checks if the piece captures is a king and notifycheckmate observer
@@ -149,6 +161,11 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
        
     }
     
+    /**
+     * Unselect a piece
+     * 
+     * @param p piece to unselect
+     */
     private void unselectPiece(Piece p) {
         p.unselect();
         selectedPiece = new DummyPiece();
@@ -156,14 +173,20 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         clearHighlights();
     }
 
+    /**
+     * Clears the yellow highlighted path
+     */
     private void clearHighlights() {
         removeObjects(getObjects(HighlightPosition.class));
     }
+    
     public void updateElPassant(Actor p){ /*this is to capture the pawn in alpassant path*/
         removeObject(p);
     }
     
-    
+    /**
+     * Notify the pawns
+     */
     public void notifyPawns(){
         boolean detach = false;
         for(IMoveStrategy p : ElPassantPawns){
@@ -176,9 +199,17 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
              detachPawns();
             }
     }
+    
+    /**
+     * Attach the pawns
+     */
     public void attachPawn(IMoveStrategy P){
         ElPassantPawns.add(P);
     }
+    
+    /**
+     * Detach the pawns
+     */
     public void detachPawns(){
         ElPassantPawns.clear();
     }
