@@ -22,6 +22,9 @@ public class BlackWonWorld  extends World
         super(5, 3, 50);
     }
 
+    /**
+     * Shows a text on screen for Black winning
+     */
     public void act(){
         showText("Black Won!",2,1);
         Greenfoot.stop();
