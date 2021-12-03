@@ -11,17 +11,17 @@ public interface IStateSubject
      * Add a StateObserver
      * @param obj to remove
      */
-    void registerObserver( IStateObserver obj ) ;
+    void registerCheckMateObserver( IStateObserver obj ) ;
 
     /**
      * Remove Observer
      * @param obj  IStateObserver to remove
      */
-    void removeObserver( IStateObserver obj ) ;
+    void removeCheckMateObserver( IStateObserver obj ) ;
 
     /**
      * Broadcast Event to Observers
      */
-    void notifyObserver( Piece p);
+    void notifyCheckMateObserver();
     
 }
