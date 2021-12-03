@@ -17,7 +17,7 @@ public class WhiteCheckmateState implements IBoardState
     {
         this.myWorld = mw;
     }
-    
+
     
     public void move()
     {
