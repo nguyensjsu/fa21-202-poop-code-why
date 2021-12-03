@@ -15,12 +15,7 @@ public class Bishop extends Piece {
         else setImage("bishop-white-50.png");
         currStrategy = new BishopStrategy(this);
     }
-    Bishop(int cd, IMoveStrategy strat) {
-        super(cd);  
-        if (this.cd == 1) setImage("bishop-black-50.png");
-        else setImage("bishop-white-50.png");
-        currStrategy = strat;
-    }
+    
     public List<Position> getLegalPositions(){
         List<Position> list = currStrategy.getLegalPositions();
         
