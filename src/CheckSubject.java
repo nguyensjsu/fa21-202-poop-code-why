@@ -3,7 +3,7 @@ public interface CheckSubject {
 
     /**
      * Remove Observer
-     * @param obj Pin AUth Observer to Remove
+     * @param obj
      */
     void removeObserver(   CheckObserver obj ) ;
 
