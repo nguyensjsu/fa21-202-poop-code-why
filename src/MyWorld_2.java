@@ -26,33 +26,14 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
     private NormalState normalState;
     private CheckState checkState;
     private CheckmateState checkmateState;
+    private IFactory ChessFactory;
 
     public MyWorld_2() {    
         super(8, 8, 50);
         ElPassantPawns = new ArrayList<IMoveStrategy>();
-        for (int i = 0; i < 8; i++) {
-            addObject(new Pawn(1,this), i, 1);
-        }
-        addObject(new Rook(1), 0, 0);
-        addObject(new Rook(1), 7, 0);
-        addObject(new Knight(1), 1, 0);
-        addObject(new Knight(1), 6, 0);
-        addObject(new Bishop(1), 2, 0);
-        addObject(new Bishop(1), 5, 0);
-        addObject(new Queen(1), 3, 0);
-        addObject(new King(1), 4, 0);
 
-        for (int i = 0; i < 8; i++) {
-            addObject(new Pawn(-1,this), i, 6);
-        }
-        addObject(new Rook(-1), 0, 7);
-        addObject(new Rook(-1), 7, 7);
-        addObject(new Knight(-1), 1, 7);
-        addObject(new Knight(-1), 6, 7);
-        addObject(new Bishop(-1), 2, 7);
-        addObject(new Bishop(-1), 5, 7);
-        addObject(new Queen(-1), 3, 7);
-        addObject(new King(-1), 4, 7);
+        ChessFactory = new RandomFactory();
+        ChessFactory.buildBoard(this);
         
         normalState = new NormalState(this);
         checkState = new CheckState(this);

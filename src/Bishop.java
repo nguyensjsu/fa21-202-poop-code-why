@@ -15,7 +15,7 @@ public class Bishop extends Piece {
         else setImage("bishop-white-50.png");
         currStrategy = new BishopStrategy(this);
     }
- 
+    
     public List<Position> getLegalPositions(){
         List<Position> list = currStrategy.getLegalPositions();
         
