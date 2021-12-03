@@ -1,5 +1,6 @@
 import greenfoot.*;  
 
+
 /**
  * Write a description of class WhiteCheckmateState here.
  * 
@@ -18,7 +19,10 @@ public class WhiteCheckmateState implements IBoardState
         this.myWorld = mw;
     }
     
-    
+    /**
+     * Move the piece
+     * Not used since game is ended
+     */
     public void move()
     {
         
