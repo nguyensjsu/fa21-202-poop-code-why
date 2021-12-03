@@ -9,7 +9,7 @@ import greenfoot.*;
  */
 public class BlackCheckmateState implements IBoardState
 {
-    MyWorld_2 myWorld;
+    MyWorld_2 myWorld ;
     
     /**
     * Constructor for objects of class BlackCheckmateState

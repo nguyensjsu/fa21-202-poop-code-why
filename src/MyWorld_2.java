@@ -12,16 +12,18 @@ import java.util.ArrayList;
  * @author Kevin Wehde 
  * @version25 19.11.2020
  */
-public class MyWorld_2 extends World implements IElPassantObserver,IElPassantClearSubject {  // PromoteObserver, subject for elpassant
+public class MyWorld_2 extends World implements IElPassantObserver,IElPassantClearSubject,IStateSubject{  // PromoteObserver, subject for elpassant
 
     boolean isPieceSelected;
     Piece selectedPiece = new DummyPiece();
     ArrayList<IMoveStrategy> ElPassantPawns;
     int turn; //1 is Black, -1 is White
     
+    private IStateObserver checkMateObserver;
+
     //current state
     private IBoardState state;
-
+    
     //states
     private NormalState normalState;
     private WhiteCheckmateState whiteCMState;
@@ -57,6 +59,8 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         normalState = new NormalState(this);
         blackCMState = new BlackCheckmateState(this);
         whiteCMState = new WhiteCheckmateState(this);
+
+        this.registerCheckMateObserver(new checkMateObserver(this));
         
         state = normalState; // Starts with Normal State
 
@@ -79,7 +83,10 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
      */
     public void stateMethod(){
         if(state == normalState)
+        {
             state.move();
+            state.endGame();
+        }
         else if(state == whiteCMState || state == blackCMState)
             state.endGame();
     }
@@ -135,20 +142,10 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
                 selectedPiece.move(targetPosition);
                 
                 if (l.size() > 0) {
+                    
                     capture(l.get(0));
-                    //System.out.println(l.get(0).getClass());
-                    // Checks if the piece captures is a king
-                    if(l.get(0).currStrategy.getClass() == KingStrategy.class){
-                        // If white captures the king
-                        // then white wins the game
-                        if(turn == -1)
-                            changeState(whiteCMState);
-                        // If black captures the king
-                        // then black wins the game
-                        else if(turn == 1)
-                            // State changes to black checkmate state, where endgame method is called
-                            changeState(blackCMState);
-                    }
+                   
+
                 }
 
                 unselectPiece(selectedPiece);
@@ -172,7 +169,15 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
      * @param p piece to capture
      */
     private void capture(Piece p) {
+        //System.out.println(l.get(0).getClass());
+        // Checks if the piece captures is a king and notifycheckmate observer
+        
         removeObject(p);
+        if(p.currStrategy.getClass() == KingStrategy.class){
+            this.notifyCheckMateObserver();
+            }
+        
+       
     }
     
     /**
@@ -198,9 +203,13 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         removeObject(p);
     }
     
+
+    
+=======
     /**
      * Notify the pawns
      */
+
     public void notifyPawns(){
         boolean detach = false;
         for(IMoveStrategy p : ElPassantPawns){
@@ -227,6 +236,24 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
     public void detachPawns(){
         ElPassantPawns.clear();
     }
+    
+    
+    
+    
+    public void registerCheckMateObserver(IStateObserver obj){
+        this.checkMateObserver = obj;
+    }
+    
+    public void removeCheckMateObserver(IStateObserver obj){
+        this.checkMateObserver = null;
+    }
+    
+    public void notifyCheckMateObserver(){
+         if ( this.checkMateObserver != null )
+            this.checkMateObserver.checkmateEvent();
+    };
+    
+    
     
     /*
     public void end()

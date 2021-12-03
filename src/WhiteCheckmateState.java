@@ -18,11 +18,16 @@ public class WhiteCheckmateState implements IBoardState
     {
         this.myWorld = mw;
     }
+
+
+    
+=======
     
     /**
      * Move the piece
      * Not used since game is ended
      */
+
     public void move()
     {
         
