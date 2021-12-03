@@ -9,7 +9,7 @@ public interface IStateSubject
    
 /**
      * Add a IStateObserver
-     * @param IStateObserver to remove
+     * @param obj to remove
      */
     void registerObserver( IStateObserver obj ) ;
 
@@ -22,6 +22,6 @@ public interface IStateSubject
     /**
      * Broadcast Event to Observers
      */
-    void notifyObserver( ) ;
+    void notifyObserver( Piece p) ;
     
 }
