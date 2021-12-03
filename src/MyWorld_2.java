@@ -204,8 +204,6 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
     }
     
 
-    
-=======
     /**
      * Notify the pawns
      */
@@ -236,8 +234,6 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
     public void detachPawns(){
         ElPassantPawns.clear();
     }
-    
-    
     
     
     public void registerCheckMateObserver(IStateObserver obj){
