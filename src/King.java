@@ -14,7 +14,12 @@ public class King extends Piece
         else setImage("king-white-50.png");
         currStrategy = new KingStrategy(this);
     }
-   
+    King(int cd,World w) {
+        super(cd);  
+        if (cd == 1) setImage("king-black-50.png");
+        else setImage("king-white-50.png");
+        currStrategy = new KingStrategy(this,w);
+    }   
     public List<Position> getLegalPositions(){
         List<Position> list = currStrategy.getLegalPositions();
         /*if (!isOwnPieceAtOffset(1, 0) && isOnBoardDelta(1, 0)) {

@@ -74,9 +74,14 @@ public abstract class Piece extends Actor {
      * Move the piece
      */
     public void move(Position p) {
+        List<Position> L = currStrategy.getLegalPositions();
+        ((MyWorld_2)getWorld()).unsetAttackCells(L);
         currStrategy.move(p);
         isSelected = false;
         setLocation(p.getX(),p.getY());
+        L = currStrategy.getLegalPositions();
+        ((MyWorld_2)getWorld()).setAttackCells(L);
+        
     }
 
     /**

@@ -11,6 +11,7 @@ class PawnStrategy extends MoveStrategy implements IElPassantSubject,IElPassantC
     Piece P;
     DummyPiece dp;
     PawnStrategy(Piece p){
+        super();
         P = p;
         dp = new DummyPiece();
     }
@@ -37,6 +38,7 @@ class PawnStrategy extends MoveStrategy implements IElPassantSubject,IElPassantC
     }
     public void move(Position p) {
         /* need to add code for el passant */
+        super.move(p);
         int temp = (P.getY() - p.getY());
         if( temp == 2 || temp == -2 /* this.P.cd */){
             Piece p1 = (Piece) P.PieceAtOffset(-1, 2*this.P.cd);
@@ -57,7 +59,6 @@ class PawnStrategy extends MoveStrategy implements IElPassantSubject,IElPassantC
         if(dx > 0 && pelPassant){
             notifyBoard(P.PieceAtOffset(1,0));
         }
-        hasYetMoved = true;
     }
     public void setNElPassant(boolean value){
         ((IElPassantClearSubject)board).attachPawn(this);
