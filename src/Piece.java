@@ -67,7 +67,7 @@ public abstract class Piece extends Actor {
     }
     
       void checkAppearance() {
-        getImage().setTransparency(50); 
+        getImage().setTransparency(20); 
     }
     
     /**

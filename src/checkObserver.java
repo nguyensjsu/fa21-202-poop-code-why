@@ -17,8 +17,8 @@ public class checkObserver implements ICheckObserver
         this.myWorld = mw;
     }
 
-     public void checkEvent(){
-                            
+     public void checkEvent(King king){
+                king.checkAppearance();
                      
     };
 }

@@ -13,7 +13,7 @@ public interface ICheckObserver
      * 
      * Observer to observer checkmateevent
      */
-    public void checkEvent();
+    public void checkEvent(King king);
     
 
 }

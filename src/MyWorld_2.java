@@ -263,17 +263,20 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
      public void notifyCheckObserver( ){
          if ( this.checkObserver != null )
          {
-            Boolean flag = verifyCheck();
+            int flag = verifyCheck();
             //System.out.print(flag);
-            if (flag ){
-                this.checkObserver.checkEvent();
+            if (flag==-1 ){
+                this.checkObserver.checkEvent(BlackKing);
+            }
+            else if (flag==1){
+                this.checkObserver.checkEvent(WhiteKing);
             }
             
         }
     } ;
     
     
-    public Boolean verifyCheck(){
+    public int verifyCheck(){
         getAllActor()  ; 
         
         for( King k :  getObjects(King.class)){
@@ -293,8 +296,8 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
             }
             for (Position p : list){
                 if (p.getX()==WhiteKing.getX() && p.getY()==WhiteKing.getY()){
-                    WhiteKing.setImage("WhiteCheck.jpg");
-                return true;
+                    //WhiteKing.checkAppearance();
+                    return 1;
             }
             }
         }
@@ -307,13 +310,13 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
             }
             for (Position p : list){
                 if (p.getX()==BlackKing.getX() && p.getY()==BlackKing.getY()){
-                BlackKing.setImage("checkBlack.jpeg");
-                    return true;
+                    //BlackKing.checkAppearance();
+                    return -1;
                 }
             }
             
         }
-        return false;
+        return 0;
     }
     
     public void getAllActor(){
