@@ -45,7 +45,7 @@ This is the design of the source code we started this project with.
 
 ## Key Feature Design:
 
-* Muhammed Mahmood: The Key Feature I implemented was Factory. Given the provided code, the instantiation of pieces on the board was placed inside the My_World class. This allowed room for improvement by decoupling the instantiation of pieces from the game world using a factory pattern. This allowed the instantiation of random chess pieces and regular chess pieces to be easily swappable by creating a reference to a Factory type in my world and choosing either a RandomFactory or a RegularFactory.  
+* Muhammed Mahmood: The Key Feature I implemented was the random moveset of the pieces. Given the provided code, the instantiation of pieces on the board was placed inside the My_World class. Given the room for improvement, I decoupled the instantiation of pieces from the game world using a Factory pattern. This allowed the instantiation of random chess pieces and regular chess pieces to be easily swappable by creating a reference to a Factory type in my world and choosing either a RandomFactory or a RegularFactory. The RandomFactory utlized my teammate Chinmay's decoupling of the piece moveset into the Strategy pattern to easily swap the MoveStrategies of pieces.   
 
 
 TODO: (Each member of the team should add the component they worked on in the diagram and explain their design choice)
