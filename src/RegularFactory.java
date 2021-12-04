@@ -33,7 +33,7 @@ public class RegularFactory extends IFactory
         world.addObject(new Bishop(1), 2, 0);
         world.addObject(new Bishop(1), 5, 0);
         world.addObject(new Queen(1), 3, 0);
-        world.addObject(new King(1), 4, 0);
+        world.addObject(new King(1,world), 4, 0);
 
         for (int i = 0; i < 8; i++) {
             world.addObject(new Pawn(-1,world), i, 6);
@@ -45,6 +45,9 @@ public class RegularFactory extends IFactory
         world.addObject(new Bishop(-1), 2, 7);
         world.addObject(new Bishop(-1), 5, 7);
         world.addObject(new Queen(-1), 3, 7);
-        world.addObject(new King(-1), 4, 7);
+        world.addObject(new King(-1,world), 4, 7);
+        for (int i = 0; i < 8; i++) {
+            world.addObject(new Pawn(1,world), i, 1);
+        }
     }
 }

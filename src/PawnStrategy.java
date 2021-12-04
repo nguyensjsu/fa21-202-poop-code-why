@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.ArrayList;
 class PawnStrategy extends MoveStrategy implements IElPassantSubject,IElPassantClearObserver 
 {
-    boolean hasYetMoved = false;
     boolean pelPassant = false;
     boolean nelPassant = false;
     //boolean elPassant = false;
@@ -22,15 +21,11 @@ class PawnStrategy extends MoveStrategy implements IElPassantSubject,IElPassantC
     }
     public List<Position> getLegalPositions(){
         List<Position> list = new ArrayList<Position>();
-        if (!hasYetMoved && !P.isPieceAtOffset(0,2*this.P.cd)) {
+        if (!hasYetMoved && !P.isPieceAtOffset(0,2*this.P.cd) && !P.isPieceAtOffset(0,this.P.cd)) {
             list.add(new Position(P.getX(), P.getY() + 2*this.P.cd));
         }
         if(!P.isPieceAtOffset(0,this.P.cd)) list.add(new Position(P.getX(), P.getY()+this.P.cd)); // ceck if there is a piece in front 
         boolean p1present = P.isPieceAtOffset(-1, this.P.cd) && !P.isOwnPieceAtOffset(-1, this.P.cd);
-        //Piece px_1 = ( Piece )P.PieceAtOffset(-1, 0);
-        //boolean elpass_1 = px_1.currStrategy.getClass() == PawnStrategy.class && ((PawnStrategy)px_1.currStrategy).elPassant;
-        //Piece px1 = ( Piece )P.PieceAtOffset(-1, 0);
-        // elpass1 = px1.currStrategy.getClass() == PawnStrategy.class && ((PawnStrategy)px1.currStrategy).elPassant;
         boolean p2present = P.isPieceAtOffset(1, this.P.cd) && !P.isOwnPieceAtOffset(1, this.P.cd);
         if (p1present || nelPassant) list.add(new Position(P.getX()-1, P.getY()+this.P.cd));
         if (p2present || pelPassant) list.add(new Position(P.getX()+1, P.getY()+this.P.cd));

@@ -10,22 +10,11 @@ public class Position {
     int x;
     int y;
     
-    /**
-     * Constructor for Position
-     * 
-     * @param x
-     * @param y
-     */
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
     
-    /**
-     * Constructor for Position
-     * 
-     * @param p
-     */
     public Position(greenfoot.Actor p) {
         this.x = p.getX();
         this.y = p.getY();
@@ -39,20 +28,10 @@ public class Position {
         return this.x == p.getX() && this.y == p.getY();
     }
     
-    /**
-     * Gets the x position
-     * 
-     * @return x
-     */
     public int getX() {
         return x;
     }
 
-    /**
-     * Gets the y position
-     * 
-     * @return y
-     */
     public int getY() {
         return y;
     }
