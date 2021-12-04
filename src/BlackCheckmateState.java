@@ -1,35 +1,39 @@
+import greenfoot.*;  
+
+
 /**
  * Write a description of class BlackCheckmateState here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class NormalState implements IBoardState
+public class BlackCheckmateState implements IBoardState
 {
-    MyWorld_2 myWorld;
+    MyWorld_2 myWorld ;
     
     /**
-    * Constructor for objects of class NormalState
+    * Constructor for objects of class BlackCheckmateState
     */
-    public NormalState(MyWorld_2 mw)
+    public BlackCheckmateState(MyWorld_2 mw)
     {
         this.myWorld = mw;
     }
 
     /**
      * Move the piece
-     * Calls the move function of the world
+     * Not used since game is ended
      */
     public void move()
     {
-        myWorld.movePiece();
+        
     }
     
     /**
      * Ends the game at checkmate
      */
     public void endGame()
-    {   
-        //Still in normal state, cant end game
+    {
+        //myWorld.end();
+        Greenfoot.setWorld(new BlackWonWorld());
     }
 }
