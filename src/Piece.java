@@ -27,9 +27,6 @@ public abstract class Piece extends Actor {
         isSelected = false;
     }
 
-    public void setCurrStrategy(IMoveStrategy strat) {
-        currStrategy = strat;
-    }
     public void act() {
         if (Greenfoot.mouseClicked(this)) {
             select();
@@ -58,9 +55,14 @@ public abstract class Piece extends Actor {
     }
 
     public void move(Position p) {
+        List<Position> L = currStrategy.getLegalPositions();
+        ((MyWorld_2)getWorld()).unsetAttackCells(L);
         currStrategy.move(p);
         isSelected = false;
         setLocation(p.getX(),p.getY());
+        L = currStrategy.getLegalPositions();
+        ((MyWorld_2)getWorld()).setAttackCells(L);
+        
     }
 
     public abstract List<Position> getLegalPositions();

@@ -12,44 +12,49 @@ import java.util.ArrayList;
  * @author Kevin Wehde 
  * @version25 19.11.2020
  */
-public class MyWorld_2 extends World implements IElPassantObserver,IElPassantClearSubject {  // PromoteObserver, subject for elpassant
+public class MyWorld_2 extends World implements IElPassantObserver,IElPassantClearSubject,ICastlingObserver {  // PromoteObserver, subject for elpassant
 
     boolean isPieceSelected;
     Piece selectedPiece = new DummyPiece();
     ArrayList<IMoveStrategy> ElPassantPawns;
+    boolean[][][] AttackMatrix;
     int turn; //1 is Black, -1 is White
-    
-    //current state
-    private IBoardState state;
-
-    //states
-    private NormalState normalState;
-    private CheckState checkState;
-    private CheckmateState checkmateState;
-    private IFactory ChessFactory;
 
     public MyWorld_2() {    
         super(8, 8, 50);
+        AttackMatrix = new boolean[8][8][3];       
         ElPassantPawns = new ArrayList<IMoveStrategy>();
+        for (int i = 0; i < 8; i++) {
+            addObject(new Pawn(1,this), i, 1);
+        }
+        addObject(new Rook(1), 0, 0);
+        addObject(new Rook(1), 7, 0);
+        addObject(new Knight(1), 1, 0);
+        addObject(new Knight(1), 6, 0);
+        addObject(new Bishop(1), 2, 0);
+        addObject(new Bishop(1), 5, 0);
+        addObject(new Queen(1), 3, 0);
+        addObject(new King(1,this), 4, 0);
 
-        ChessFactory = new RandomFactory();
-        ChessFactory.buildBoard(this);
+        for (int i = 0; i < 8; i++) {
+            addObject(new Pawn(-1,this), i, 6);
+        }
+        addObject(new Rook(-1), 0, 7);
+        addObject(new Rook(-1), 7, 7);
+        addObject(new Knight(-1), 1, 7);
+        addObject(new Knight(-1), 6, 7);
+        addObject(new Bishop(-1), 2, 7);
+        addObject(new Bishop(-1), 5, 7);
+        addObject(new Queen(-1), 3, 7);
+        addObject(new King(-1,this), 4, 7);
         
-        normalState = new NormalState(this);
-        checkState = new CheckState(this);
-        checkmateState = new CheckmateState(this);
-        
-        state = normalState; // Starts with Normal State
-
         isPieceSelected = false;
         selectedPiece = new DummyPiece();
         turn = -1; //White starts
     }
 
     public void act() {
-        //movePiece();
-        
-        move(); // Using this instead to initiate the current state's appropriate method
+        movePiece();
     }
 
     public boolean select(Piece p, int cd) {
@@ -72,27 +77,8 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
             addObject(new HighlightPosition(), p.getX(), p.getY());
         }
     }
-    
-    /**
-     * Uses the state's move method
-     * If normal state, uses MovePiece()
-     * If check state, uses.....
-     * If checkmate state, uses ..... 
-     */
-    public void move(){
-        state.move();
-    }
-    
-    /**
-     * Change state
-     * 
-     * @param state, change to this state
-     */
-    public void changeState(IBoardState state){
-        this.state= state;
-    }
 
-    public void movePiece() {
+    private void movePiece() {
         for (HighlightPosition p: getObjects(HighlightPosition.class)) {
             if (Greenfoot.mouseClicked(p)) {
                 Position targetPosition = new Position(p);
@@ -111,6 +97,8 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
     }
     
     private void capture(Piece p) {
+        List<Position> L = p.currStrategy.getLegalPositions();
+        unsetAttackCells(L,-turn);
         removeObject(p);
     }
     
@@ -145,12 +133,55 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
     public void detachPawns(){
         ElPassantPawns.clear();
     }
-    
-    /**
-     * Ends the game when checkmate
-     * Will implement display on screen later
-     */
-    public void end(){
-        //System.out.println("Game Finished");
+    public void setAttackCells(List<Position> L){
+        for(Position p:L){
+            AttackMatrix[p.getX()][p.getY()][1+turn]=true;
+        }
     }
+    public void unsetAttackCells(List<Position> L){
+        for(Position p:L){
+            AttackMatrix[p.getX()][p.getY()][1+turn] = false;
+        }
+    }
+    public void setAttackCells(List<Position> L,int myturn){
+        for(Position p:L){
+            AttackMatrix[p.getX()][p.getY()][1+myturn]=true;
+        }
+    }
+    public void unsetAttackCells(List<Position> L,int myturn){
+        for(Position p:L){
+            AttackMatrix[p.getX()][p.getY()][1+myturn] = false;
+        }
+    }
+    public boolean isUnderAttack(Position p){
+        return AttackMatrix[p.getX()][p.getY()][1-turn];
+    }
+    public boolean isUnderAttack(int x, int y){
+        return AttackMatrix[x][y][1-turn];
+    }
+    public void notifyRightCastle(){
+        int y;
+        if(turn == 1){
+            //black is notifying for castle
+            y = 0;
+        }
+        else{
+            y = 7;
+        }
+        List<Piece> Alist = getObjectsAt(7,y,Piece.class);
+        Alist.get(0).move(new Position(5,y));
+    }
+    public void notifyLeftCastle(){
+        int y;
+        if(turn == 1){
+            //black is notifying for castle
+            y = 0;
+        }
+        else{
+            y = 7;
+        }        
+        List<Piece> Alist = getObjectsAt(0,y,Piece.class);
+        Alist.get(0).move(new Position(3,y));
+    }
+
 }

@@ -7,6 +7,7 @@ class BishopStrategy extends MoveStrategy
     // instance variables - replace the example below with your own
     Piece P;
     BishopStrategy(Piece p){
+        super();
         P = p;
     }
 

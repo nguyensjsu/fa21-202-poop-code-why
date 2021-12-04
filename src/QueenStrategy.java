@@ -5,6 +5,7 @@ class QueenStrategy extends MoveStrategy
 {
     Piece P;
     QueenStrategy(Piece p){
+        super();
         P = p;
     }
 
