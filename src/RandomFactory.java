@@ -68,7 +68,7 @@ public class RandomFactory extends IFactory
         world.addObject(whitePieces.get(12), 2, 7);
         world.addObject(whitePieces.get(13), 5, 7);
         world.addObject(whitePieces.get(14), 3, 7);
-        world.addObject(new King(-1), 4, 7);
+        world.addObject(new King(-1,world), 4, 7);
 
         for (int i = 0; i < 8; i++) {
             world.addObject(whitePieces.get(i), i, 6);
@@ -82,7 +82,7 @@ public class RandomFactory extends IFactory
         world.addObject(blackPieces.get(12), 2, 0);
         world.addObject(blackPieces.get(13), 5, 0);
         world.addObject(blackPieces.get(14), 3, 0);
-        world.addObject(new King(1), 4,0);
+        world.addObject(new King(1,world), 4,0);
         
         Collections.shuffle(whitePieces);
         Collections.shuffle(blackPieces);
@@ -104,8 +104,8 @@ public class RandomFactory extends IFactory
         blackPieces.get(6).setCurrStrategy(new QueenStrategy(blackPieces.get(6)));
 
         for(int i=7;i<14;i++) {
-            whitePieces.get(i).setCurrStrategy(new PawnStrategy(whitePieces.get(i)));
-            blackPieces.get(i).setCurrStrategy(new PawnStrategy(blackPieces.get(i)));
+            whitePieces.get(i).setCurrStrategy(new PawnStrategy(whitePieces.get(i),world));
+            blackPieces.get(i).setCurrStrategy(new PawnStrategy(blackPieces.get(i),world));
         }
         
     }

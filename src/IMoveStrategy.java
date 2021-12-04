@@ -17,4 +17,7 @@ public interface IMoveStrategy
      */
     List<Position> getLegalPositions();
     void move(Position p);
+    List<Position> getAttackCells();
+    void setAttackCells(List<Position> L);
+    boolean hasYetMoved();
 }

@@ -7,6 +7,7 @@ public class KnightStrategy extends MoveStrategy
     // instance variables - replace the example below with your own
     Piece P;
     KnightStrategy(Piece p){
+        super();
         P = p;
     }
 

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 class RookStrategy extends MoveStrategy{
     Piece P;
+    boolean hasYetMoved = false;
     RookStrategy(Piece p){
+        super();
         P = p;
     }    
     public List<Position> getLegalPositions(){
@@ -34,5 +36,8 @@ class RookStrategy extends MoveStrategy{
                 d++;
             }
             return list;
+    }
+    public void move(Position p) {
+        super.move(p);
     }
 }
