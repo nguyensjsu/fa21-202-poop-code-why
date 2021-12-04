@@ -43,4 +43,7 @@ public class King extends Piece
         }*/
         return list;
     } 
+     public void checkAppearance() {
+        super.checkAppearance();
+    }
 }

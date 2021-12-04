@@ -66,6 +66,10 @@ public abstract class Piece extends Actor {
         else getImage().setTransparency(255); 
     }
     
+      void checkAppearance() {
+        getImage().setTransparency(50); 
+    }
+    
     /**
      * Return color and direction of the game
      */
