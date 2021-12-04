@@ -10,21 +10,19 @@ Our team's project is to take the implementation of a simple chess board, and mo
 
 Additionally, based off of the starting code, we must implement the following logic, 
 
-1. Identifying a check.
-
-1. Preventing moves that do not block a check. 
-
 1. Identifying Checkmate and ending the game.
 
 1. Starting the game as white.
 
 1. Fixing the moveset of pawn, (allows perpendicular capture) 
 
+Link to 1 min ad video: https://www.youtube.com/watch?v=5Mprv3HX-Mw
+
 ## Team Member Journals:
 
 * Chinmay Shukla: https://docs.google.com/document/d/1hJMsJwp5Xlyywy-onqwICOrtpbDtYrHZYfIUAjbDRoQ/edit?usp=sharing
 
-* Muhammmed Mahmood, https://docs.google.com/document/d/1OIwvsKmLpW2Pc0GV55G3Gw_0hWcfRI1yykBY_kX0wZQ/edit?usp=sharing
+* Muhammmed Mahmood: https://docs.google.com/document/d/1OIwvsKmLpW2Pc0GV55G3Gw_0hWcfRI1yykBY_kX0wZQ/edit?usp=sharing
 
 * Parmeet Singh: https://docs.google.com/document/d/1mTYzsSg6dEoM-nRt_nIEjZhkx56JWAxNDi5SLKIIucs/edit#heading=h.5o2fqzsgwrzz
 
@@ -46,6 +44,9 @@ This is the design of the source code we started this project with.
 
 
 ## Key Feature Design:
+
+* Muhammed Mahmood: The Key Feature I implemented was Factory. Given the provided code, the instantiation of pieces on the board was placed inside the My_World class. This allowed room for improvement by decoupling the instantiation of pieces from the game world using a factory pattern. This allowed the instantiation of random chess pieces and regular chess pieces to be easily swappable by creating a reference to a Factory type in my world and choosing either a RandomFactory or a RegularFactory.  
+
 
 TODO: (Each member of the team should add the component they worked on in the diagram and explain their design choice)
 
