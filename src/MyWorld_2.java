@@ -71,12 +71,17 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
      * Uses the state's move method
      */
     public void stateMethod(){
-        if(state == normalState)
+         if(state == whiteCMState || state == blackCMState)
+        {
+            state.endGame();
+        }
+        else if(state == normalState)
         {
             state.move();
-        }
-        else if(state == whiteCMState || state == blackCMState)
             state.endGame();
+    
+        }
+       
     }
     
     /**
@@ -126,6 +131,7 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         //WhiteKing.setImage("king-white-50.png");
         //BlackKing.setImage("king-black-50.png");
         for (HighlightPosition p: getObjects(HighlightPosition.class)) {
+            Boolean KingCaptureFlag = true;
             if (Greenfoot.mouseClicked(p)) {
                 Position targetPosition = new Position(p);
                 List<Piece> l = getObjectsAt(targetPosition.getX(), targetPosition.getY(), Piece.class);
@@ -134,16 +140,23 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
                 if (l.size() > 0) {
                     
                  capture(l.get(0));
+                 if(l.get(0).currStrategy.getClass() == KingStrategy.class){
+                    this.notifyCheckMateObserver();
+                    KingCaptureFlag =false;
+                    }
                    
                 }
                 
                 unselectPiece(selectedPiece);
                 
                 changeTurn();
+                if (KingCaptureFlag)
+                      // notify checkobserver of moving pieces
+                     this.notifyCheckObserver();
+                else
+                    continue;
                 
-                // notify checkobserver of moving pieces
-                this.notifyCheckObserver();
-                
+          
             }
         }
     }
@@ -166,9 +179,7 @@ public class MyWorld_2 extends World implements IElPassantObserver,IElPassantCle
         // Checks if the piece captures is a king and notifycheckmate observer
         
         removeObject(p);
-        if(p.currStrategy.getClass() == KingStrategy.class){
-            this.notifyCheckMateObserver();
-            }
+        
         
        
     }
