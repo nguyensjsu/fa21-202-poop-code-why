@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 class RookStrategy extends MoveStrategy{
     Piece P;
-    boolean hasYetMoved = false;
     RookStrategy(Piece p){
         super();
         P = p;

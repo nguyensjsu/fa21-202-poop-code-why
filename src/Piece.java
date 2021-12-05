@@ -17,10 +17,17 @@ public abstract class Piece extends Actor {
     int cd;
     boolean isSelected;
     IMoveStrategy currStrategy;
+    
+    /**
+     * constructor for Piece
+     */
     Piece() {
         super();
     }
 
+    /**
+     * constructor for Piece with CD
+     */
     Piece(int cd) {
         super();
         this.cd = cd;
@@ -36,6 +43,9 @@ public abstract class Piece extends Actor {
         }
     }  
 
+    /**
+     * Select a Piece
+     */
     public void select() {
         if (((MyWorld_2)getWorld()).select(this, cd)) {
             isSelected = true;
@@ -43,6 +53,9 @@ public abstract class Piece extends Actor {
         adjustAppearance();
     }
     
+    /**
+     * Unselect a Piece
+     */
     public void unselect() {
         isSelected = false;
         adjustAppearance();
@@ -53,10 +66,20 @@ public abstract class Piece extends Actor {
         else getImage().setTransparency(255); 
     }
     
+      void checkAppearance() {
+        getImage().setTransparency(20); 
+    }
+    
+    /**
+     * Return color and direction of the game
+     */
     public int cd() {
         return this.cd;
     }
 
+    /**
+     * Move the piece
+     */
     public void move(Position p) {
         List<Position> L = currStrategy.getLegalPositions();
         ((MyWorld_2)getWorld()).unsetAttackCells(L);
@@ -68,6 +91,9 @@ public abstract class Piece extends Actor {
         
     }
 
+    /**
+     * Returns a list of all legal positions
+     */
     public abstract List<Position> getLegalPositions();
 
     public boolean isPieceAtOffset(int dx, int dy) {
