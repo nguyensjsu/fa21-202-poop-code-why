@@ -50,13 +50,15 @@ This is the design of the source code we started this project with.
 
 * Muhammed Mahmood: The Key Feature I implemented was the random moveset of the pieces. Given the provided code, the instantiation of pieces on the board was placed inside the My_World class. Given the room for improvement, I decoupled the instantiation of pieces from the game world using a Factory pattern. This allowed the instantiation of random chess pieces and regular chess pieces to be easily swappable by creating a reference to a Factory type in my world and choosing either a RandomFactory or a RegularFactory. The RandomFactory utlized my teammate Chinmay's decoupling of the piece moveset into the Strategy pattern to easily swap the MoveStrategies of pieces.   
 
+* Pratik Kasle: The Key Feature I implemented was the checkmate and check. I worked with parmeet on the checkmate. The checkmate feature uses observer design pattern. A checkmate oberver is attached to every piece capture. The observer checks if the captured piece is a king than it ends and than endgame. The check feature used observer pattern. A observer is attached to every move. After every move it checks if king is on any possible legal position of all the pieces of opposite color. 
+
 * Parmeet Singh: I implemented the end game feature (checkmate) for the game. With the source code our group chose to expand on, the game continued despite capturing the king, until all pieces on the board were cleared. In order to solve that, I implemented a state-observer design patterns combination. In this approach, the board has 3 states (normal, blackCheckmate, whiteCheckmate), and the board is a subject along with an observer to observe the checkmate. Upon a checkmate, the observer changes the state of the board to the appropriate state (blackCheckmate/whiteCheckmate) depending on who wins the game.
 
 * Chinmay Shukla: I implemented the Strategy patterns that segregated the moveset of the piece from the pieces. Initially, the source code had hardcoded the movement of the pieces. In order to make it easier to implement a key part of our project, it was important that my teammates had the ability to easily assign the moveset of certain piece to any random piece. To solve this predicament I used a strategy pattern in which I made a class IMoveStrategy which was implemented by an abstract class MoveStrategy. The methods of this abstract class were implemented by the respective piece movement strategy. For instance, the moveset of the queen was implemented by QueenStratedy, rook had RookStrategy, Knight had KnightStrategy, and so on. So we can easily select a MoveStrategy(with currStrategy object) with a variable object(of RookStrategy,QueenStratey,BishopStrategy,KnightStrategy,PawnStrategy and KingStrategy) so the piece will implement that particular moveset.
 
 
 
-TODO: (Each member of the team should add the component they worked on in the diagram and explain their design choice)
+
 
 
 
