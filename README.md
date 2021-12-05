@@ -28,7 +28,7 @@ Link to Agile Video: https://www.youtube.com/watch?v=h4EcFGi0l5Q
 
 * Parmeet Singh: https://docs.google.com/document/d/1mTYzsSg6dEoM-nRt_nIEjZhkx56JWAxNDi5SLKIIucs/edit#heading=h.5o2fqzsgwrzz
 
-* Pratik Kasle:https://docs.google.com/document/d/1GwsSLKxkEtjYEYjZaAHFsPTI5SQPiBy5Arp-FFRsN5k/edit
+* Pratik Kasle: https://docs.google.com/document/d/1GwsSLKxkEtjYEYjZaAHFsPTI5SQPiBy5Arp-FFRsN5k/edit?usp=sharing
 
 ## Architecture Diagrams:
 
