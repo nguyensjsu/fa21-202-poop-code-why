@@ -11,10 +11,10 @@ Our team's project is to take the implementation of a simple chess board, and mo
 Additionally, based off of the starting code, we must implement the following logic, 
 
 1. Identifying Checkmate and ending the game.
-
-1. Starting the game as white.
-
-1. Fixing the moveset of pawn, (allows perpendicular capture) 
+2. Identifying Check. Make King transparent on check.
+3. Implement Random chess.
+4. Starting the game as white.
+5. Fixing the moveset of pawn, (allows perpendicular capture) 
 
 Link to 1 min ad video: https://www.youtube.com/watch?v=5Mprv3HX-Mw
 
