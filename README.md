@@ -22,6 +22,8 @@ Link to Agile Video: https://www.youtube.com/watch?v=h4EcFGi0l5Q
 
 Link to Demo :https://youtu.be/Li0dghR3p4I
 
+Link to Scrum Task Sheet: https://docs.google.com/spreadsheets/d/16X595I1W2CUnZ0AWi9XeW3bKKq2QJ96TZxYEfOSBH2E/edit?usp=sharing
+
 ## Team Member Journals:
 
 * Chinmay Shukla: https://docs.google.com/document/d/1hJMsJwp5Xlyywy-onqwICOrtpbDtYrHZYfIUAjbDRoQ/edit?usp=sharing
