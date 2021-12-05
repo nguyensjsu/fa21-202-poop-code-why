@@ -20,6 +20,8 @@ Link to 1 min ad video: https://www.youtube.com/watch?v=5Mprv3HX-Mw
 
 Link to Agile Video: https://www.youtube.com/watch?v=h4EcFGi0l5Q
 
+Link to Demo :https://youtu.be/Li0dghR3p4I
+
 ## Team Member Journals:
 
 * Chinmay Shukla: https://docs.google.com/document/d/1hJMsJwp5Xlyywy-onqwICOrtpbDtYrHZYfIUAjbDRoQ/edit?usp=sharing
